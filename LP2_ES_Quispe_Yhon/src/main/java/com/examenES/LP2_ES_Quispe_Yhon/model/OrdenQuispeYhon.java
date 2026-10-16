@@ -2,6 +2,8 @@ package com.examenES.LP2_ES_Quispe_Yhon.model;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +37,7 @@ public class OrdenQuispeYhon {
 	private String servicio;
 
 	@Column(name = "fecha_ingreso")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaIngreso;
 
 	@Column(name = "estado", columnDefinition = "char(1)", length = 1)

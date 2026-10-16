@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Nueva orden de servicio</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container mt-5">
+		<div class="card shadow-lg">
+			<div class="card-body">
+				<h1 class="card-title text-center mb-4">Nueva orden de servicio</h1>
+				<div class="row justify-content-center">
+					<div class="col-md-10">
+						<form th:action="@{/orden/registrar}" method="post" th:object="${orden}" class="row g-3">
+							<div class="col-md-12">
+								<label for="servicio" class="form-label">Servicio</label>
+								<input type="text" class="form-control" th:field="*{servicio}" maxlength="80" required>
+							</div>
+							<div class="col-md-6">
+								<label for="placa" class="form-label">Placa</label>
+								<input type="text" class="form-control" th:field="*{placa}" maxlength="10" required>
+							</div>
+							<div class="col-md-6">
+								<label for="cliente" class="form-label">Cliente</label>
+								<select class="form-select" th:field="*{cliente}" required>
+									<option value="">--seleccione--</option>
+									<option th:each="item : ${lstClientes}" th:value="${item.idCliente}"
+										th:text="${item.nombreCompleto}"></option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label for="fechaIngreso" class="form-label">Fecha de ingreso</label>
+								<input type="date" class="form-control" th:field="*{fechaIngreso}" required>
+							</div>
+							<div class="col-md-6">
+								<label for="estado" class="form-label">Estado</label>
+								<select class="form-select" th:field="*{estado}" required>
+									<option value="">--seleccione--</option>
+									<option value="P">Pendiente</option>
+									<option value="E">En proceso</option>
+									<option value="F">Finalizado</option>
+								</select>
+							</div>
+							<div class="col-md-12 d-flex justify-content-evenly mt-4">
+								<a th:href="@{/orden/listado}" class="btn btn-outline-dark">REGRESAR</a>
+								<button type="submit" class="btn btn-primary">GUARDAR</button>
+								<button type="reset" class="btn btn-secondary">LIMPIAR</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
